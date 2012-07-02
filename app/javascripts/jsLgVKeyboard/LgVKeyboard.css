@@ -1,0 +1,130 @@
+/*
+	 LCD TV LABORATORY, LG ELECTRONICS INC., SEOUL, KOREA
+	 
+	 Developer : Sungsik Kim (sungsik74.kim@lge.com)
+	 			 Yejeong Park (yejeong.park@lge.com)
+*/
+
+@charset "utf-8";
+* {
+	padding: 0;
+	margin: 0;
+}
+* {
+	font-family:LG Display_Eng_Kor, LG Display;
+	margin : 0px 0 0 0px;
+}
+
+/*.LgInputField{*/
+	/*background-color : blue;*/
+	/*color : white;*/
+/*}*/
+
+/*************************************************
+***************horizontal style*******************
+**************************************************/
+
+/*horizontal keyboardmain*/ 
+.keyboardArea {	
+	position: absolute;  
+	left: 0px;
+	width: 1252px;
+	height: 284px;
+	background-color:black;
+	padding-left: 28px;
+	padding-top: 28px;
+  display: none;
+	
+	z-index: 1000;
+	
+	/*-webkit-user-select: none;*/
+	/*-khtml-user-select: none;*/
+	/*-moz-user-select: none;*/
+	/*-o-user-select: none;*/
+	/*user-select: none;*/
+}
+
+button{
+  /*TODO Por algun motivo, en chrome, los margenes se me sumaban en lugar de solaparse como deberia ser
+  entonces un objeto que tenia 1px de margen total, al lado de otro igual, estaba a una distancia total de dos pixeles
+  creo que el problema es asi. Quiero creer que el problema es asi. Las metricas que me mostraba chrome me indicaban directamente
+  margen de 2px :s
+  Buscando el problema en google, solo llegue a un bug de IE6 muy similar.
+  (http://net.tutsplus.com/tutorials/html-css-techniques/9-most-common-ie-bugs-and-how-to-fix-them/)
+  su forma de solucionarlo para IE6 funciono para chrome, y no afecto a opera*/
+  margin: 0px 1px 1px 0px;
+
+}
+
+.horBtnLayer {
+	position: relative;  
+	width: 1252px;
+	height: 52px;
+}
+
+.horBtnNormal {
+	width: 66px; 
+	height: 50px;
+	line-height:48px;
+	font-size: 28px;
+	font-weight: bold;
+	color: rgb(250,250,250);
+	text-align: center;	
+	position: relative;
+	background: url('./image/Qwerty_Btn1_N.png');
+	float: left;
+	/*margin: 1px;*/
+}
+
+.horBtnSmall {
+	width: 66px; 
+	height: 50px;
+	line-height:48px;
+	font-size: 20px;
+	color: rgb(250,250,250);
+	text-align: center;	
+	position: relative;
+	background: url('./image/Qwerty_Btn1_N.png');
+	float: left;
+	/*margin: 1px;*/
+}
+
+/*horizontal middle button */
+.btnHorNormalMiddle {
+	width: 134px; 
+	height: 50px; 
+	color: rgb(250,250,250);
+	line-height:48px;
+	/*vertical-align: middle;*/
+	text-align: center;	
+	position: relative;
+	font-size: 24px;
+	float: left;
+	/*margin: 1px;*/
+}
+
+.btnHorNormalImgMiddle {
+	width: 134px; 
+	height: 50px; 
+	color: rgb(250,250,250);
+	line-height:50px;
+	/*vertical-align: middle;*/
+	text-align: center;	
+	position: relative;
+	font-size: 24px;
+	float: left;
+	/*margin: 1px;*/
+}
+
+/* horizontal normal long button */
+.btnHorNormalLong {
+	width: 406px; 
+	height: 50px;
+	line-height:50px;
+	/*vertical-align: middle;*/
+	text-align: center;	
+	position: relative;
+	font-size: 26px;
+	float: left;
+	/*margin: 1px;*/
+}

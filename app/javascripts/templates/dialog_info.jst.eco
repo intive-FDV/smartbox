@@ -1,0 +1,6 @@
+<%= @info %><br />
+<button class="ok focused option" id="option-ok"
+        style="nav-left:#option-ok ;nav-right:#option-ok;nav-up:#option-ok;nav-down:#option-ok;">
+    <%= @acceptText %>
+</button>
+<button class="dialog-background"></button>

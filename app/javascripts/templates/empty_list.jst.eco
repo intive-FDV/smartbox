@@ -1,0 +1,4 @@
+<div class="empty-list">
+  <button class="focus-capturer focus-out" id="focus-receptor"></button>
+  <div class="message"><%= @message %></div>
+</div>

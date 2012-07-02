@@ -1,0 +1,10 @@
+<%= @question %><br />
+<button class="yes option" id="option-yes"
+        style="nav-left:#option-yes ;nav-right:#option-no;nav-up:#option-yes;nav-down:#option-yes;">
+    <%= @acceptText %>
+</button>
+<button class="no focused option" id="option-no"
+        style="nav-left:#option-yes;nav-right:#option-no;nav-up:#option-no;nav-down:#option-no;">
+    <%= @rejectText %>
+</button>
+<button class="dialog-background"></button>

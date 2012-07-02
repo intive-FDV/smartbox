@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<% if platformString == "SAMSUNG" %>
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/div/html4/strict.dtd">
+  <html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+      <script type='text/javascript' language='javascript' src='$MANAGER_WIDGET/Common/jquery.js'></script>
+      <script type='text/javascript' language='javascript' src='$MANAGER_WIDGET/Common/API/Widget.js'></script>
+      <script type='text/javascript' language='javascript' src='$MANAGER_WIDGET/Common/API/TVKeyValue.js'></script>
+
+       <!--TODO EL PLUGIN DE VIDEO DEBE ESTAR SETEADO EN ESTE LUGAR... Desde el ppio?-->
+    <object id="video" border=0 classid="clsid:SAMSUNG-INFOLINK-PLAYER"></object>
+    <object id="pluginAudio" border=0 classid="clsid:SAMSUNG-INFOLINK-AUDIO"></object>
+    <object id="pluginTVMW" border=0 classid="clsid:SAMSUNG-INFOLINK-TVMW"></object>
+
+<% else %>
+  <!DOCTYPE html PUBLIC
+          "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+      <meta http-equiv="content-type" content="application/ce-html+xml; charset=UTF-8"/>
+      <script type='text/javascript' language='javascript' src='assets/vendor/jquery-min.js'></script>
+
+<% end %>
+
+  <link rel="stylesheet" href="assets/application.css?r=<%=rand() %>"/>
+  <title>Mock Tv</title>
+  <script type="text/javascript">
+    <%= '<![CDATA[' unless true or @platform_string == "SAMSUNG" %>
+        var onLoadDom = function(){
+          console.log(window.platformString);
+          window.initializeApp();
+          window.Platform.onLoad();
+          $(".splash").remove();
+        };
+        window.platformString = "<%= @platform_string %>";
+    <%= ']]>' unless true or @platform_string == "SAMSUNG" %>
+  </script>
+
+</head>
+<%screen_size=
+  if @platform_string == "SAMSUNG"
+     "width:960px;height:540px"
+   else
+    "width:1280px;height:720px"
+  end
+%>
+<body onload="onLoadDom();">
+  <div class="splash" style="
+    position:fixed; top: 0; left:0; z-index: 2000; <%=screen_size %>;text-align:center;
+    background: black center no-repeat url('<%='assets/splash.min.png' %>');background-size:100%;">
+    <img src='assets/Loading.png' style="position:relative;top:70%;color:transparent;" />
+  </div>
+  <script type="text/javascript" src="assets/forbrowser.js"></script>
+  <script type="text/javascript" src="assets/application.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<div class="tab-panel">
+  <% for tab, i in @tabs: %>
+    <% tabCount = @tabs.length %>
+    <% index = i + 1 %>
+    <% up   = if index > 1 then index - 1 else tabCount %>
+    <% down = if index < tabCount then index + 1 else 1 %>
+    <button id="t<%= index %>" class="tab <%= tab.className %>"
+            style=";nav-up:#t<%= up%>;nav-down:#t<%= down %>; nav-right:#focus-receptor;">
+      <!--<div class="icon"></div>-->
+      <%= tab.text %>
+    </button>
+  <% end %>
+</div>
+
+<div class="main-panel"></div>
+<div class="controls"></div>
+<!--<div class="global-spinner"><button>Cargando</button></div>-->
+<!--<div class="username"></div>-->
+
+

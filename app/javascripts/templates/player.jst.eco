@@ -1,0 +1,13 @@
+<% if Platform.isLg(): %>
+  <object id="video" type="application/x-netcast-av" width="1280" height="720" autostart="true" downloadable="false"></object>
+<%  else if Platform.isPhilips(): %>
+    <object id="video" type="video/mpeg4" style="height: 100%; width: 100%"></object>
+<% else if Platform.isSamsung(): %>
+
+<% else: %>
+    <video id="video" class="<%= Math.random() %>" width="1280" height="720">
+        This shit does not support video :(
+    </video>
+<% end %>
+<div class="spinner"></div>
+<a class="player-background icon"></a>

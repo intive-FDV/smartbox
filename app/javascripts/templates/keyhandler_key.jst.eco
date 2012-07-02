@@ -1,0 +1,6 @@
+<% for keyCode, handler of @handlers: %>
+  <div class="key <%= handler.className %>">
+    <div class="icon"></div>
+    <%= handler.description %>
+  </div>
+<% end %>

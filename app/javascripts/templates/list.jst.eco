@@ -1,0 +1,12 @@
+<button class="focus-capturer focus-in" id="focus-receptor"></button>
+<button class="focus-capturer focus-out"></button>
+<button class="focus-capturer focus-next" id="vertical-next-page"></button>
+<button class="focus-capturer focus-top"></button>
+<button class="focus-capturer focus-bottom"></button>
+
+<button class="previous-page" style="<%= 'visibility:hidden' if @pageNumber == 1 %>">▲</button>
+<div class="items-container"></div>
+<div class="info"></div>
+<div class="page-title"><%=@pageTitle%><span><%= @pageSubtitle %></span></div>
+<div class="page-counter"><%= @pageNumber + " / " + @pageCount %></div>
+<button class="next-page" id="next-page" style="<%= 'visibility:hidden' if @pageNumber == @pageCount %>">▼</button>

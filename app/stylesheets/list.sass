@@ -1,0 +1,462 @@
+
+
+$violet: #862a7d //#96318f
+$orange:  #ff9600 //#f87702
+
+$gray: blue //#3d3d3d //Main background color
+$darkGray: black
+
+//$violet: #862a7d //#96318f
+//$orange:  #ff9600 //#f87702
+//
+//$gray: #3d3d3d //Main background color
+//$darkGray: #202020//#2e2e2e // #202020 //Darken background color
+
+// Reusable colors.
+$grayTextColor: #c8c8c8  //#c9c9c9
+$lightTextColor: #fafcf9
+$darkTextColor: #2e2e2e
+$titleTextColor: $orange
+
+$buttonColor: $violet
+$buttonFocusColor: $orange
+
+$logoHeight: 100px
+$logoWidth: 250px
+
+
+
+
+body
+  opacity: 100%
+  background: transparent
+  position: absolute
+  top: 0
+  left: 0
+  margin: 0
+  padding: 0
+  overflow: hidden
+  //position: relative
+  width: $screenWidth
+  height: $screenHeight
+  overflow: hidden
+  background:
+    color: $gray
+    //color: transparent
+    repeat: no-repeat
+    size: $logoWidth - 5px auto
+    position: 0px 0px
+  color: $lightTextColor
+  font:
+    //family: "Philips Screen Font 4", sans-serif
+    size: 20px
+    weight: normal
+    style: normal
+  line-height: 22px
+  *
+    overflow: hidden
+    vertical-align: top
+
+input[type=text], input[type=password]
+  border: 1px solid white
+  background-color: white
+  border-radius: 7px
+input[type=text]:disabled, input[type=password]:disabled
+  background-color: #ccc
+  border-color: #ccc
+
+// A selector to be @extended by thing that want to show a spinner.
+.loading-spinner
+  background:
+    //image: url('loading.gif')
+    position: center center
+    repeat: no-repeat
+
+// Images show a spinner when not loaded.
+img
+  @extend .loading-spinner
+
+$bottomBarHeight: 40px
+$bottomBarWidth: $screenWidth
+
+$tabPanelWidth: 250px
+$tabPanelHeight: $screenHeight - $bottomBarHeight - $logoHeight
+
+$mainPanelWidth: $screenWidth - $tabPanelWidth
+$mainPanelHeight:  $screenHeight - $bottomBarHeight
+
+.btn
+  background-color: $buttonColor
+  box-shadow: inset 0px -7px 15px -5px darken($buttonColor, 15%)
+  padding: 10px
+  border-radius: 10px
+  color: $lightTextColor
+  font-weight: bold
+  text-shadow: darken($buttonColor, 20%) 0 -1px 1px
+.btn:focus
+  background-color: $buttonFocusColor
+  box-shadow: inset 0px -7px 15px -5px darken($buttonFocusColor, 20%)
+  text-shadow: darken($buttonFocusColor, 20%) 0 -1px 1px
+@mixin tab-icon($className, $iconIndex)      //30px es la separacion entre cada icono
+  .tab.#{$className} .icon
+    background-position: -30px * $iconIndex bottom
+  .tab.#{$className}.selected .icon, .tab.#{$className}:focus .icon
+    background-position:  -30px * $iconIndex top
+.tab-panel
+  width: $tabPanelWidth
+  height: $tabPanelHeight
+  top: $logoHeight
+  float: left
+  background-color: #f0f0f0
+  position: relative
+  .tab
+    position: relative
+    float: left
+    width: $tabPanelWidth
+    padding: 15px
+    padding-left: 50px
+    font-size: 22px
+    font-weight: bold
+    text-shadow: white 0 1px 1px
+    color: $darkTextColor
+    text-align: left
+    border-bottom: 2px ridge #ffffff //TODO Fix this border to match design
+    background-color: transparent
+    p
+      white-space: nowrap
+      text-overflow: ellipsis
+    .icon
+      position: absolute
+      left: 10px
+      top: 10px
+      width: 30px
+      height: 30px
+      background:
+        //image: url('sprite.png')
+        size: auto 30px * 2
+        repeat: no-repeat
+  .tab.selected
+    $bkgColor: $buttonColor
+    background-color: $bkgColor
+    color: $lightTextColor
+    text-shadow: darken($bkgColor, 20%) 0 -1px 1px
+  .tab:focus
+    $bkgColor: $buttonFocusColor
+    background-color: $bkgColor
+    color: $lightTextColor
+    text-shadow: darken($bkgColor, 20%) 0 -1px 1px
+
+  //@include tab-icon(home,        0)
+
+@mixin key-icon($className, $iconIndex)
+  .key.#{$className} .icon
+    background-position: -22px * $iconIndex top
+  .key.#{$className}:focus .icon
+    background-position: -22px * $iconIndex bottom
+.controls
+  position: absolute
+  background-color: $darkGray
+  width: $bottomBarWidth - 20px
+  height: $bottomBarHeight
+  bottom: 0px
+  padding-right:  20px
+  font:
+    size: 20px
+    weight: bold
+
+  .key
+    position: relative
+    height: 20px
+    margin:
+      top: ($bottomBarHeight - 20px) / 2
+      bottom: ($bottomBarHeight - 20px) / 2
+      left: 20px
+    background-color: transparent
+    padding-left: 25px
+    float: right
+    font-size: 14px
+    color:  $grayTextColor
+  .icon
+    position: absolute
+    left: 2px
+    top: 0px
+    width: 22px
+    height: 19px
+    background:
+      image: url('sprite_keys.png')
+      size: auto 19px * 2
+      repeat: no-repeat
+      position: 0px 38px
+  @include key-icon(vk_back, 0)
+  @include key-icon(vk_red, 1)
+
+$margin: 16px
+$arrowsHeight: 35px
+$arrowsWidth: $mainPanelWidth - 2 * $margin
+
+
+.main-panel
+  width: $mainPanelWidth
+  height: $mainPanelHeight
+  float: right
+  position: relative
+
+  .focus-capturer
+    background-color: transparent
+    width: 1px
+    height: 100%
+    position: absolute
+    top: 0
+  .focus-in
+    left: 0
+  .focus-out
+    left: 1px
+  .focus-next
+    right: 0
+  .focus-top, .focus-bottom
+    height: 1px
+    width: 100%
+    left: 0px
+  .focus-bottom
+    bottom: 0px
+    top: auto
+
+  .previous-page, .next-page
+    height: $arrowsHeight
+    width: $arrowsWidth
+    background-color: transparent
+    margin-left: $margin
+    color: $lightTextColor
+
+// If the only child of main-panel (e.g. content-list, genre-list) is empty,
+// show a spinner.
+.main-panel > div:empty
+  @extend .loading-spinner
+  width: 100%
+  height: 100%
+
+@mixin items-container($width, $height, $itemsPerLine, $itemsPerRow, $margin)
+  width: $width
+  height: $height
+  margin-left: $margin
+
+  $itemWidth: $width / $itemsPerLine - $margin
+  $itemHeight: $height / $itemsPerRow - $margin
+  .item
+    width: $itemWidth
+    height: $itemHeight
+    position: relative
+    margin: 0px $margin $margin 0px
+    background-color:  $darkGray
+    text-align: center
+    .label
+      color: $lightTextColor
+      position: absolute
+      bottom: 10px
+      width: $itemWidth
+
+
+.empty-list
+  text-align: center
+  .message
+    margin: $mainPanelHeight / 2 - 30px auto 12px auto
+    font-size: 23px
+
+
+.player
+  $playerZIndex: 10
+  width: $screenWidth
+  height: $screenHeight
+  position: fixed
+  left: 0px
+  top: 0px
+  z-index: $playerZIndex
+  background-color: $darkGray //rgb(16,16,16)
+
+  button.background //Is a button also to prevent the player loses focus when clicking over background
+    z-index: $playerZIndex + 1
+    position: absolute
+    height: 100%
+    width: 100%
+    top: 0
+    left: 0
+    background:
+      position: center center
+      color: transparent
+      repeat: no-repeat
+  button.background.icon
+    background-image: url('player/big_icon.png')
+  .spinner
+    @extend .loading-spinner
+    display: none
+    top: 0px
+    left: 0px
+    position: absolute
+    width: 100%
+    height: 100%
+    line-height: $screenHeight + 70px //Para que el texto se vea debajo del gif de spinner
+    text-align: center
+  .video-controls
+    z-index: $playerZIndex + 2
+    *
+      float: left
+      position: relative
+      margin: 0px 2px
+
+    $width:  800px
+    $height: 42px
+    $mainButtonSize: 67px
+    $litleButtonSize: 38px
+    $progressBarWidth: 410px
+
+    // The main button overflows out of the container.
+    overflow: visible
+
+    padding: 0 5px
+    position: absolute
+    bottom: 30px
+    left: ($screenWidth - $width) / 2
+    width: $width
+    height: $height
+    background: #3d3d3d
+    border-radius: 12px/20px
+    box-shadow: inset -8px -16px 20px -10px darken(#3d3d3d, 10%)
+    .status
+      $statusHeight: 28px
+      $bkgColor: #363636
+      width: 152px
+      margin: 0 10px
+      top: ($height - $statusHeight) / 2
+      line-height: $statusHeight
+      text-align: center
+      background: $bkgColor
+      border-radius: 6px
+      box-shadow: inset 3px 7px 15px -5px darken($bkgColor, 12%)
+      font:
+        size: 16px
+        weight: bold
+    .main-btn, .little-btn
+      background:
+        image: url('player/sprite_player.png')
+        repeat: no-repeat
+    .focused
+      background-image: url('player/sprite_player_focused.png')
+    .main-btn
+      width: $mainButtonSize
+      height: $mainButtonSize
+      top: ($height - $mainButtonSize) / 2
+    .little-btn
+      height: $litleButtonSize
+      width: $litleButtonSize
+      top: $height / 2 - $litleButtonSize / 2
+    .play
+      background-position: left top
+    .pause
+      background-position: -$mainButtonSize top
+    .rw
+      background-position: -($mainButtonSize * 2) top
+    .ff
+      background-position: -($mainButtonSize * 2 + $litleButtonSize) top
+    .exit
+      background-position: -($mainButtonSize * 2 + $litleButtonSize * 2) top
+    .progress-bar
+      height: $height
+      width: $progressBarWidth
+      margin: 0 10px
+      $barHeight: 15px
+      *
+        height: $barHeight
+        position: absolute
+        top: $height / 2 - $barHeight / 2
+        border-radius: $barHeight
+        background:
+          position: center center
+          size:  $progressBarWidth 100%
+          repeat: no-repeat
+        margin: 0
+      .background, .progress-indicator
+        background-image: url('player/progress-bar_sprite.png')
+      .background
+        width: $progressBarWidth
+        background:
+          size:  $progressBarWidth $barHeight * 2
+          position: left top
+      .progress-indicator
+        background:
+          size: 100%  $barHeight * 2 + 2px
+          position: left -17px
+        width: 0px
+
+
+.dialog
+  position: fixed
+  width: 100%
+  height: 100%
+  z-index: 100
+  text-align: center
+  padding-top: 300px
+  font-size: 25px
+  *
+    z-index: 1
+  .title
+    font-size: 30px
+    line-height: 34px
+    margin-bottom: 15px
+  .dialog-background
+    background-color: blue
+    width: 100%
+    height: 100%
+    position: absolute
+    top: 0
+    left: 0
+    z-index: -1
+    background-color: rgba(16,16,16,0.8)
+  button.option
+    background-color: $buttonColor
+    padding: 10px
+    border-radius: 10px
+    color: $lightTextColor
+    font-weight: bold
+    min-width: 100px
+    margin: 10px
+    opacity: 0.5
+  button.option.focused // , button.option:focus
+    $bkgColor: $buttonFocusColor
+    background-color: $buttonFocusColor
+    text-shadow: darken($buttonFocusColor, 20%) 0 -1px 1px
+    box-shadow: 0px 0px 18px 0px $buttonFocusColor
+    opacity: 1
+  input
+    margin: 10px
+    padding-left: 5px
+    box-shadow: 0px 0px 18px 0px transparent
+  input:focus , input.focused
+    box-shadow: 0px 0px 18px 0px $buttonFocusColor
+  .spinner
+    @extend .loading-spinner
+    height: 25px
+    background-size: auto 25px
+
+.global-spinner
+  //@extend .loading-spinner
+  position: absolute
+  width: $bottomBarWidth
+  height: $bottomBarHeight
+  line-height: $bottomBarHeight
+  background-size: auto 18px
+  bottom: 0px
+  left: 0px
+  text-align: center
+  font-weight: bold
+  button
+    background: url('loading-dots.gif') no-repeat
+    background-position: right 3px
+    padding-right: 32px
+    background-size: auto 28px
+    color: $lightTextColor
+
+.error-message
+  color: rgb(240,0,0) //TODO Change this color for a variable
+  font-size: 18px
+  width: 100%
+
