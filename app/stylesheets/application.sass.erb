@@ -42,7 +42,7 @@ $mainPanelHeight: $screenHeight
 button:focus
   border: 2px solid cyan
   background: cyan !important
-button:focus:before
+button:focus::before
   content: '<'
   float: left
 .main-panel
@@ -130,27 +130,27 @@ body.playing
       opacity: 1
       background-color: blue
       //background-color: rgba(20,20,20,0.8)
-    .ctrl-btn.focused:before
+    .ctrl-btn.focused::before
       opacity: 1
-    .ctrl-btn:before
+    .ctrl-btn::before
       color: white
       font-size: 20px
       opacity: 0.7
       line-height: 20px
-    .ctrl-btn.play:before
+    .ctrl-btn.play::before
       //content: '▶'
       content: 'P'
-    .ctrl-btn.pause:before
+    .ctrl-btn.pause::before
       //content: '❚❚'
       content: 'S'
       font-size: 12px
-    .ctrl-btn.ff:before
+    .ctrl-btn.ff::before
       //content: '▸▸'
       content: 'F'
-    .ctrl-btn.rw:before
+    .ctrl-btn.rw::before
       //content: '◂◂'
       content: 'R'
-    .ctrl-btn.exit:before
+    .ctrl-btn.exit::before
       //content: '↶'
       content: 'B'
       line-height: 35px
