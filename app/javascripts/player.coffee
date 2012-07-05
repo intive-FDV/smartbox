@@ -323,7 +323,7 @@ class PlayerView extends Backbone.View
     "click div"       : "returnFocus"
 
   returnFocus: (e) =>
-    @$(".video-controls .focused")[0].focus()
+    @$(".video-controls .focused").focus()
 
   mouseMove: (e)=>
     @controlBar.activeBar()

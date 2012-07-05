@@ -3,9 +3,7 @@
 
 #Detecting Platform
 
-window.console?= {}
-window.console.log ?= (m)->
-  alert m
+window.console?= log : (m)->  alert m
 
 window.resolveURL = (url)->
   a = document.createElement('a');
@@ -199,11 +197,14 @@ Platform =
       VK_BACK           : 461  
   onLoad: -> null
   isLg: ->
-    navigator.userAgent.search(/LG/i) > -1
+    window.platformString == "LG"
+#    navigator.userAgent.search(/LG/i) > -1
   isSamsung: ->
-    navigator.userAgent.search(/Maple/i) > -1  #version < 3.1
+    window.platformString == "SAMSUNG"
+    #    navigator.userAgent.search(/Maple/i) > -1  #version < 3.1
   isPhilips: ->
-    navigator.userAgent.search(/Philips/i) > -1 || navigator.userAgent.search(/Nettv/i) > -1
+    window.platformString == "PHILIPS"
+    #    navigator.userAgent.search(/Philips/i) > -1 || navigator.userAgent.search(/Nettv/i) > -1
   exit: -> null
 
   #Devuelve una interface de control de video a partir del objeto de video pasado
@@ -264,17 +265,16 @@ else if Platform.isSamsung()
   Platform.onLoad = ->
     widgetAPI.sendReadyEvent()
   Platform.getVideoInterface= (videoObject) ->
-#    window.videoObject = videoObject
-#    videoObject.setData = (data) ->
-#      console.log data
-#      window.datas = resolveURL data #this en este caso corresponde al objeto de video
-#    videoObject.play = ->
-#      console.log window.datas
-#      window.videoObject.SetDisplayArea?(0, 0, 960, 540)
-#      window.videoObject.Play window.datas
-#    videoObject
+    videoData = ""
+    videoObject.setData = (data) ->
+      videoData = resolveURL data #this en este caso corresponde al objeto de video
+    videoObject.play = ->
+      @SetDisplayArea?(0, 0, 960, 540)
+      log videoData
+      @Play videoData
+    videoObject
 
-    new SamsungVideoPlayer videoObject
+#    new SamsungVideoPlayer videoObject
 
 
 else #in case of a browser, sets some needed keys to numeric keys
